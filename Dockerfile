@@ -44,9 +44,8 @@ RUN bash <(curl -fsSL https://get.jetify.com/devbox) -f && \
 
 # Install global devbox packages
 RUN devbox global add \
-	atuin \
 	bat \
-        crossplane-cli \
+	crossplane-cli \
 	exa \
 	git \
 	gh \
@@ -57,7 +56,7 @@ RUN devbox global add \
 	kubectl \
 	kubernetes-helm \
 	kyverno-chainsaw \
-        tenv \
+	tenv \
 	tig \
 	upbound \
 	vim \
@@ -75,5 +74,8 @@ RUN echo "source /etc/profile.d/bash_completion.sh" >> $HOME/.bashrc && \
     echo "source <(helm completion bash)" >> $HOME/.bashrc && \
     echo "source <(tenv completion bash)" >> $HOME/.bashrc && \
     echo "source <(kind completion bash)" >> $HOME/.bashrc && \
-    echo "source <(atuin gen-completions --shell=bash)" >> $HOME/.bashrc && \
     echo "alias l='exa --git -l --octal-permissions -F'" >> $HOME/.bashrc
+
+# Install atuin
+RUN curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
+

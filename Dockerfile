@@ -48,6 +48,8 @@ RUN devbox global add \
 	bat \
         crossplane-cli \
 	exa \
+	git \
+	gh \
 	go \
 	jq \
 	kcl-cli \
@@ -66,12 +68,12 @@ RUN eval "$(devbox global shellenv --preserve-path-stack -r)" && hash -r
 
 # Generate bash completions and aliases
 RUN echo "source /etc/profile.d/bash_completion.sh" >> $HOME/.bashrc && \
-    echo "source <(kubectl completion bash)" >> $HOME/.bashrc \
-    echo "alias k='kubectl'" >> $HOME/.bashrc \
-    echo "complete -F __start_kubectl k" >> $HOME/.bashrc \
-    echo "source <(chainsaw completion bash)" >> $HOME/.bashrc \
-    echo "source <(helm completion bash)" >> $HOME/.bashrc \
-    echo "source <(tenv completion bash)" >> $HOME/.bashrc \
-    echo "source <(kind completion bash)" >> $HOME/.bashrc \
-    echo "source <(atuin completion bash)" >> $HOME/.bashrc \
+    echo "source <(kubectl completion bash)" >> $HOME/.bashrc && \
+    echo "alias k='kubectl'" >> $HOME/.bashrc && \
+    echo "complete -F __start_kubectl k" >> $HOME/.bashrc && \
+    echo "source <(chainsaw completion bash)" >> $HOME/.bashrc && \
+    echo "source <(helm completion bash)" >> $HOME/.bashrc && \
+    echo "source <(tenv completion bash)" >> $HOME/.bashrc && \
+    echo "source <(kind completion bash)" >> $HOME/.bashrc && \
+    echo "source <(atuin gen-completions --shell=bash)" >> $HOME/.bashrc && \
     echo "alias l='exa --git -l --octal-permissions -F'" >> $HOME/.bashrc
